@@ -1,0 +1,5 @@
+name = "aiolists"
+main = "src/index.js"
+compatibility_date = "2025-05-31"
+account_id = "907d0f3b58bad536d1abc3c0a826c887"
+workers_dev = true
