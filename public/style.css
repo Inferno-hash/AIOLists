@@ -103,11 +103,103 @@ button:active, .action-btn:active, .trakt-login-btn:active, .stremio-refresh-btn
   transform: translateY(1px);
 }
 
+/* Connection Buttons Styling */
+.connections-column {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding-bottom: 15px;
+}
+
+.connection-item {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.trakt-connection-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.connection-btn {
+  background: #8E5AF7 !important;
+  color: white !important;
+  border: none !important;
+  padding: 8px 16px !important;
+  border-radius: 6px !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  font-family: inherit !important;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+  text-decoration: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 10px !important;
+  white-space: nowrap !important;
+  line-height: 1.4 !important;
+  min-height: 34px !important;
+  width: fit-content;
+  box-sizing: border-box;
+}
+
+/* Ensure text within connection buttons uses consistent font weight and family */
+.connection-btn b {
+  font-weight: 500 !important;
+  font-family: inherit !important;
+}
+
+.connection-btn:hover {
+  transform: translateY(-1px);
+}
+
+.connection-btn:active {
+  transform: translateY(1px);
+}
+
+.connection-logo {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+  flex-shrink: 0;
+  vertical-align: middle;
+}
+
+.trakt-btn {
+  background-color: #ed1c24 !important;
+}
+
+.trakt-btn:hover {
+  background-color: #d4181e !important;
+}
+
+.tmdb-btn {
+  background-color: #0d253f !important;
+}
+
+.tmdb-btn:hover {
+  background-color: #081a2a !important;
+}
+
+/* Legacy support for existing trakt-login-btn class */
 .trakt-login-btn { background-color: #4CAF50; gap: 8px; }
 .trakt-login-btn:hover { background-color: #45a049; }
 .trakt-login-btn img { width: 16px; height: 16px; object-fit: contain; }
 
-.disconnect-btn { background-color: #f44336; font-size: 12px; padding: 6px 10px; margin-left: 10px; }
+.disconnect-btn { 
+  background-color: #f44336; 
+  font-size: 12px; 
+  padding: 6px 10px; 
+  border: none;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
 .disconnect-btn:hover { background-color: #d32f2f; }
 
 .copy-manifest-btn { background-color: #2196F3; margin-left: 10px; height: auto; }
@@ -118,23 +210,41 @@ button:active, .action-btn:active, .trakt-login-btn:active, .stremio-refresh-btn
 
 .api-section { border: 1px solid #e0e0e0; border-radius: 6px; padding: 15px 15px 0px 15px; margin-bottom: 15px; }
 .api-section h2 { margin-top: 0; margin-bottom: 0; color: #333; font-size: 1.15em; font-weight: 600; }
-.connections-row, #traktConnection { display: flex; align-items: center; gap: 15px; padding-bottom: 7px; }
 #traktPinContainer { display: none; align-items: center; gap: 10px; }
-#traktPin { width: 100px; padding: 9px 12px; border: 1px solid #ddd; border-radius: 4px; }
+#traktPin { 
+  width: 110px; 
+  padding: 9px 12px; 
+  border: 1px solid #ddd; 
+  border-radius: 4px;
+  font-size: 14px;
+  height: 38px;
+  box-sizing: border-box;
+  font-family: 'Lexend', sans-serif;
+  text-transform: uppercase;
+}
 .connected-state {
   display: none;
-  align-items: center; justify-content: space-between; padding: 8px 12px;
-  background-color: rgba(76, 175, 80, 0.08); border: 1px solid #a5d6a7; border-radius: 4px;
-  color: #2e7d32; flex-grow: 1; font-size: 14px;
+  align-items: center; 
+  justify-content: flex-start; 
+  padding: 8px 12px;
+  background-color: rgba(76, 175, 80, 0.08); 
+  border: 1px solid #a5d6a7; 
+  border-radius: 4px;
+  color: #2e7d32; 
+  font-size: 14px;
+  width: fit-content;
+  gap: 12px;
 }
 .connected-text { font-weight: 500; }
 
-.import-section .info-text {
+.import-section .info-text,
+.api-section .info-text { /* Apply to Trakt info text as well */
     font-size: 0.85em;
     color: #555;
     margin-bottom: 10px;
     margin-top: -5px;
 }
+
 
 .settings-section .collapsible-header {
     padding-bottom: 15px;
@@ -177,6 +287,209 @@ button:active, .action-btn:active, .trakt-login-btn:active, .stremio-refresh-btn
     color: #555;
 }
 
+.metadata-search-settings {
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid #eee;
+}
+
+.metadata-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+}
+
+.metadata-row .form-group {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.metadata-row .form-group label {
+  font-weight: 500;
+  white-space: nowrap;
+  min-width: auto;
+}
+
+.metadata-row .metadata-select {
+  min-width: 180px;
+}
+
+@media (max-width: 600px) {
+  .metadata-row {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .metadata-row .form-group {
+    min-width: unset;
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .metadata-search-settings {
+    margin-top: 15px; /* Slightly less margin on mobile */
+    padding-top: 12px;
+  }
+}
+
+.metadata-settings {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.metadata-source-group,
+.language-group {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.metadata-source-group label,
+.language-group label {
+    min-width: 140px;
+    font-weight: 500;
+    margin-right: 20px;
+}
+
+.metadata-select {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background-color: white;
+    font-size: 14px;
+    min-width: 200px;
+    transition: border-color 0.2s ease;
+}
+
+.metadata-select:focus {
+    outline: none;
+    border-color: #4CAF50;
+    box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+}
+
+.metadata-select option:disabled {
+    color: #999;
+    font-style: italic;
+}
+
+/* Searchable Select Styles */
+.searchable-select-container {
+    position: relative;
+    min-width: 200px;
+}
+
+.searchable-select {
+    width: 100%;
+    padding: 8px 35px 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background-color: white;
+    font-size: 14px;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+    user-select: none;
+}
+
+.searchable-select:focus {
+    outline: none;
+    border-color: #4CAF50;
+    box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+}
+
+.searchable-select-arrow {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: #666;
+    font-size: 12px;
+    transition: transform 0.2s ease;
+}
+
+.searchable-select-container.open .searchable-select-arrow {
+    transform: translateY(-50%) rotate(180deg);
+}
+
+.searchable-select-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border: 1px solid #ddd;
+    border-top: none;
+    border-radius: 0 0 6px 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    max-height: 300px;
+    overflow: hidden;
+}
+
+.searchable-select-search {
+    width: 100%;
+    padding: 8px 12px;
+    border: none;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+    outline: none;
+    background: #f9f9f9;
+}
+
+.searchable-select-search:focus {
+    background: white;
+    border-bottom-color: #4CAF50;
+}
+
+.searchable-select-options {
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+.searchable-select-option {
+    padding: 10px 12px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    border-bottom: 1px solid #f5f5f5;
+    font-size: 14px;
+}
+
+.searchable-select-option:hover {
+    background-color: #f0f7ff;
+}
+
+.searchable-select-option.selected {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.searchable-select-option.hidden {
+    display: none;
+}
+
+.searchable-select-options::-webkit-scrollbar {
+    width: 6px;
+}
+
+.searchable-select-options::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.searchable-select-options::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 3px;
+}
+
+.searchable-select-options::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
 .list-container { margin-top: 30px; }
 .list-container.hidden { display: none !important; }
 .list-heading { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
@@ -189,6 +502,7 @@ button:active, .action-btn:active, .trakt-login-btn:active, .stremio-refresh-btn
   margin-bottom: 8px; box-shadow: 0 1px 2px rgba(0,0,0,0.06);
   gap: 10px;
 }
+
 .list-item.hidden { opacity: 0.65; background-color: #f5f5f5; }
 
 .drag-handle {
@@ -215,27 +529,49 @@ button:active, .action-btn:active, .trakt-login-btn:active, .stremio-refresh-btn
 }
 .tag.l { background-color: #9C27B0; } .tag.e { background-color: #4CAF50; }
 .tag.w { background-color: #FF9800; } .tag.t { background-color: #c50000; }
+.tag.m { background-color: #0d253f; } /* TMDB tag */
+.tag.tag-with-image,
+.tag.t.tag-with-image {
+  background-color: transparent !important;
+}
 .tag.a { background-color: #607d8b; }
 .tag img { width: 18px; height: 18px; object-fit: contain; border-radius: 0; }
 
-.name-container { flex-grow: 1; display: flex; align-items: center; min-width: 0; }
-.list-name { font-size: 15px; color: #333; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.4; }
+.name-container { 
+  flex-grow: 1; 
+  display: flex; 
+  align-items: center; 
+  min-width: 0;
+  gap: 6px;
+}
+.list-name { 
+  font-size: 15px; 
+  color: #333; 
+  white-space: nowrap; 
+  overflow: hidden; 
+  text-overflow: ellipsis; 
+  line-height: 1.4;
+}
+
+.clickable-list-name {
+  cursor: pointer;
+}
+.clickable-list-name:hover {
+  color: #8E5AF7;
+}
+
 
 .edit-name-input {
   flex-grow: 1; padding: 8px 10px; border: 1px solid #ccc; border-radius: 4px;
   font-size: 14px; margin-right: 8px; line-height: 1.4;
 }
-.edit-actions { display: flex; gap: 6px; }
-.save-name-btn, .cancel-name-btn { padding: 7px 12px; font-size: 13px; }
-.save-name-btn { background-color: #4CAF50; } .save-name-btn:hover { background-color: #45a049; }
-.cancel-name-btn { background-color: #f44336; } .cancel-name-btn:hover { background-color: #d32f2f; }
 
 .list-actions-group { display: flex; align-items: center; gap: 6px; margin-left: auto; flex-shrink: 0; }
 .action-icon {
   background: none; border: none; cursor: pointer; padding: 0;
   border-radius: 50%; width: 34px; height: 34px;
   display: inline-flex; align-items: center; justify-content: center;
-  transition: background-color 0.2s; color: #666;
+  transition: background-color 0.2s, color 0.2s; color: #666;
 }
 .action-icon:hover { background-color: #f0f0f0; color: #222; }
 .remove-list-button { color: #e53935; }
@@ -299,6 +635,16 @@ button:active, .action-btn:active, .trakt-login-btn:active, .stremio-refresh-btn
 .addon-group-details { flex-grow: 1; display: flex; flex-direction: column; justify-content: center; min-width: 0;}
 .addon-group-name { font-weight: 500; color: #333; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 14px;}
 .addon-group-info { font-size: 12px; color: #777; }
+.addon-group-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+}
+  .configure-addon-group svg {
+  width: 18px;
+  height: 18px;
+}
 .remove-addon-group {
     margin-left: auto;
     color: #e53935;
@@ -338,12 +684,44 @@ button:active, .action-btn:active, .trakt-login-btn:active, .stremio-refresh-btn
 }
 
 @media (max-width: 600px) {
+  .page-header {
+    padding-left: 4px;
+  }
   .container { padding: 15px; }
   .form-group { flex-direction: column; align-items: stretch; }
   .form-group label { width: auto; margin-bottom: 5px; text-align: left; }
   .input-container { max-width: none; }
+  
+  .connection-btn { 
+    padding: 10px 16px; 
+    font-size: 14px; 
+    min-height: 40px; 
+  }
+  .connection-logo { 
+    width: 18px; 
+    height: 18px; 
+  }
   .list-heading { flex-direction: column; align-items: flex-start; gap: 10px; }
   .icon-legend { flex-direction: column; gap: 8px; align-items: flex-start; }
+  
+  .metadata-source-group,
+  .language-group {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 5px;
+  }
+  
+  .metadata-source-group label,
+  .language-group label {
+    min-width: auto;
+    margin-bottom: 8px; /* Increased spacing on mobile */
+    margin-right: 0; /* Remove right margin on mobile */
+  }
+  
+  .metadata-select {
+    min-width: auto;
+    width: 100%;
+  }
 
   .list-item {
       padding: 0;
@@ -402,25 +780,11 @@ button:active, .action-btn:active, .trakt-login-btn:active, .stremio-refresh-btn
       word-break: break-all;
       font-size: 14px;
   }
-  .mobile-top-row .edit-button.action-icon {
-      flex-shrink: 0;
-      margin-left: 8px;
-  }
    .mobile-top-row .edit-name-input {
     flex-grow:1 !important;
     width: auto !important;
     min-width: 50px;
   }
-   .mobile-top-row .edit-actions {
-    display: flex;
-    gap: 5px;
-    margin-left: 5px;
-  }
-  .mobile-top-row .edit-actions .action-btn {
-    padding: 6px 10px;
-    font-size: 12px;
-  }
-
 
   .mobile-bottom-row {
       display: flex;
@@ -454,12 +818,29 @@ button:active, .action-btn:active, .trakt-login-btn:active, .stremio-refresh-btn
 .notice-text { margin: 20px 0 10px 0; color: #555; font-size: 0.9rem; text-align: center; }
 .stremio-buttons { display: flex; justify-content: center; align-items: center; margin: 25px 0; gap: 10px; }
 
+.release-link {
+    text-decoration: none;
+    color: inherit;
+    display: inline-flex;
+    align-items: center;
+}
+.release-link:hover {
+    color: #8E5AF7;
+}
 .app-version {
   font-size: 0.8em;
   color: #666;
   margin-left: -5px;
   margin-right: 10px;
 }
+.app-version svg {
+  width: 0.8em;
+  height: 0.8em;
+  fill: currentColor;
+  margin-left: 3px;
+  vertical-align: top;
+}
+
 .github-link {
   display: inline-flex;
   align-items: center;
@@ -474,6 +855,87 @@ button:active, .action-btn:active, .trakt-login-btn:active, .stremio-refresh-btn
 .github-link:hover {
   color: #8E5AF7;
 }
+
+.github-button-container {
+  vertical-align: middle;
+  display: inline-block;
+  height: 28px; /* Match large button height */
+  margin-left: 8px;
+}
+
+/* Custom HTML blurb row styling */
+.custom-blurb-row {
+  width: 100%;
+  padding: 20px 0;
+  margin: 0;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #e9ecef;
+  display: flex;
+  justify-content: center;
+}
+
+.custom-blurb {
+  max-width: 800px;
+  width: 100%;
+  padding: 0 40px;
+  font-size: 14px;
+  color: #666;
+  line-height: 1.5;
+  text-align: left;
+  overflow: hidden; /* Clear floats */
+}
+
+.custom-blurb p {
+  margin: 12px 0;
+  line-height: 1.6;
+}
+
+.custom-blurb img {
+  /* No width/height restrictions - allow HTML attributes and inline styles to control sizing */
+  border-radius: 6px;
+  /* All sizing and positioning styles are handled inline for maximum flexibility */
+}
+
+.custom-blurb a {
+  color: #4CAF50; /* Use app's green theme for links */
+  text-decoration: none;
+  transition: color 0.2s ease;
+  font-weight: 500;
+}
+
+.custom-blurb a:hover {
+  color: #45a049; /* Darker green on hover */
+  text-decoration: underline;
+}
+
+.custom-blurb br {
+  line-height: 1.8; /* Ensure proper spacing for line breaks */
+}
+
+.custom-blurb * {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+  .custom-blurb {
+    padding: 0px;
+    font-size: 13px;
+  }
+  
+  .custom-blurb img {
+    max-height: 60px;
+    max-width: 60px;
+    margin: 0 8px 8px 0;
+  }
+}
+.github-button, .github-button:visited, .github-button:focus, .github-button:active {
+    text-decoration: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
 
 .action-btn.active-setting {
   background-color: #4CAF50;
@@ -504,7 +966,7 @@ button:active, .action-btn:active, .trakt-login-btn:active, .stremio-refresh-btn
 }
 
 .list-item.requires-connection .drag-handle,
-.list-item.requires-connection .edit-button,
+.list-item.requires-connection .clickable-list-name,
 .list-item.requires-connection .visibility-toggle,
 .list-item.requires-connection .merge-toggle,
 .list-item.requires-connection .sort-controls {
@@ -516,9 +978,312 @@ button:active, .action-btn:active, .trakt-login-btn:active, .stremio-refresh-btn
   pointer-events: none;
 }
 .list-item.mobile-list-item.requires-connection .mobile-drag-handle,
-.list-item.mobile-list-item.requires-connection .edit-button,
+.list-item.mobile-list-item.requires-connection .clickable-list-name,
 .list-item.mobile-list-item.requires-connection .visibility-toggle,
 .list-item.mobile-list-item.requires-connection .merge-toggle,
 .list-item.mobile-list-item.requires-connection .sort-controls {
     display: none !important;
+}
+
+.label-link-icon {
+  margin-left: 5px;
+  text-decoration: none;
+  color: #8E5AF7;
+  font-size: 0.9em;
+}
+.label-link-icon:hover {
+  text-decoration: underline;
+}
+
+.edit-random-users-link {
+  font-size: 0.85em;
+  color: #8E5AF7;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.edit-random-users-link:hover {
+  text-decoration: underline;
+}
+
+.random-users-dropdown {
+  margin-top: 8px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+  max-width: 1000px;
+  display: block;
+}
+
+.random-users-tag-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.random-user-tag {
+  background-color: #e0e0e0;
+  color: #333;
+  padding: 4px 8px;
+  border-radius: 3px;
+  font-size: 0.85em;
+  display: inline-flex;
+  align-items: center;
+}
+
+.remove-user-tag {
+  margin-left: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  color: #777;
+}
+.remove-user-tag:hover {
+  color: #000;
+}
+
+.random-user-input {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.list-item[data-id="random_mdblist_catalog"] .sort-controls {
+  display: flex !important; /* Example override, might need refinement based on actual class conflicts */
+}
+
+.media-type-display {
+  font-size: 0.9em;
+  color: #555;
+  margin-right: 8px; /* Space between media type and list name */
+  padding: 2px 5px;
+  border-radius: 3px;
+  /* background-color: #f0f0f0; */ /* Optional background */
+  cursor: default; /* Default cursor, changed if clickable */
+  white-space: nowrap;
+}
+
+.clickable-media-type {
+  cursor: pointer;
+  text-decoration: underline dashed;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  color: #8E5AF7; /* Make it look interactive */
+}
+.clickable-media-type:hover {
+  background-color: #f0f0f0;
+  color: #7B4DE0;
+}
+
+.edit-mediatype-input {
+  padding: 6px 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.9em;
+  line-height: 1.2;
+  width: 100px; /* Adjust as needed */
+}
+
+/* Adjustments for mobile if needed */
+@media (max-width: 600px) {
+  .mobile-top-row .name-container .media-type-display {
+    margin-right: 5px; /* Slightly less margin on mobile */
+    font-size: 0.85em;
+  }
+  .edit-mediatype-input {
+    width: 80px;
+  }
+  .list-item-row-desktop .name-container { /* Ensure items align well with new element */
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    min-width: 0;
+  }
+   .list-item-row-desktop .name-container .media-type-display {
+    flex-shrink: 0; /* Prevent shrinking */
+  }
+  .list-item-row-desktop .name-container .list-name {
+    flex-grow: 1; /* Allow list name to take remaining space */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+/* Ensure .name-container in desktop properly aligns items when media type is present */
+.list-item-row-desktop .name-container {
+    display: flex;
+    align-items: center; /* Vertically align tag, media type, and name */
+    gap: 8px; /* Consistent gap */
+}
+.list-item-row-desktop .tag {
+    flex-shrink: 0;
+}
+.list-item-row-desktop .media-type-display {
+    flex-shrink: 0;
+}
+.list-item-row-desktop .list-name {
+    min-width: 0; /* Important for ellipsis to work */
+}
+
+.list-item-row-desktop .edit-name-input {
+    flex-grow: 1;
+    min-width: 50px; /* Prevent input from becoming too small */
+}
+
+
+/* For mobile, ensure the media type is inside the name-container */
+.mobile-top-row .name-container {
+    display: flex;
+    align-items: center;
+    gap: 6px; /* Adjust gap as needed */
+    flex-grow: 1;
+    min-width: 0;
+}
+.mobile-top-row .tag {
+    flex-shrink: 0;
+}
+.mobile-top-row .media-type-display {
+    flex-shrink: 0;
+    font-size: 0.85em;
+}
+.mobile-top-row .list-name {
+    min-width: 0;
+    font-size: 14px;
+}
+.mobile-top-row .edit-name-input {
+    flex-grow: 1;
+    min-width: 0;
+}
+
+/* Spinner Animation */
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border-left-color: #8E5AF7; /* Main theme color */
+  animation: spin 1s ease infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* List Placeholder Container */
+.list-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  text-align: center;
+  background-color: #f9f9f9;
+  border-radius: 6px;
+  margin-top: 15px;
+}
+
+.list-placeholder.hidden {
+  display: none;
+}
+
+.placeholder-text {
+  font-size: 1.1em;
+  color: #777;
+  font-weight: 500;
+  margin-top: 15px;
+}
+
+/* Smaller inline spinner for notifications */
+.inline-spinner {
+  display: inline-block;
+  vertical-align: middle;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border-left-color: #333; /* Neutral color for notifications */
+  animation: spin 0.8s linear infinite;
+  margin-left: 8px;
+}
+#traktPersistenceContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 5px;
+}
+
+.persistence-status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+}
+
+.status-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  color: white;
+  font-weight: bold;
+}
+
+.status-icon.not-persistent {
+  background-color: #f44336;
+}
+
+.status-icon.persistent {
+  background-color: #4CAF50;
+}
+
+.upstash-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.persistence-action-link {
+  color: #8E5AF7;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.persistence-action-link:hover {
+  text-decoration: underline;
+}
+
+.search-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  align-items: center;
+  margin-left: 20px; /* Add left margin to offset from label */
+}
+
+.search-options .checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  font-size: 14px;
+  color: #555;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.search-options .checkbox-label input[type="checkbox"] {
+  margin: 0;
+  cursor: pointer;
 }

@@ -1,7 +1,10 @@
+// Load environment variables first
+require('dotenv').config();
+
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
-const { PORT, IS_PRODUCTION } = require('./config');
+const { PORT, IS_PRODUCTION, TMDB_BEARER_TOKEN } = require('./config');
 const configureRoutes = require('./routes');
 
 async function initializeApp() {
@@ -17,7 +20,7 @@ async function initializeApp() {
     app.listen(PORT, () => {
       if (!IS_PRODUCTION) {
         console.log(`AIOLists Stremio Addon running on port ${PORT}`);
-        console.log(`Admin panel: http://localhost:${PORT}/configure`);
+        console.log(`Admin panel: http://localhost:7000/configure`);
       }
     });
     
@@ -32,7 +35,7 @@ async function initializeApp() {
 
 if (require.main === module) {
   initializeApp().catch(err => {
-    console.error('Applikationen failed to start:', err);
+    console.error('Application failed to start:', err);
     process.exit(1);
   });
 } else {

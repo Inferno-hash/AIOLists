@@ -1,11 +1,26 @@
 // src/config/index.js
-const ITEMS_PER_PAGE = 100;
+const ITEMS_PER_PAGE = 50;
 const PORT = process.env.PORT || 7000;
 const IS_PRODUCTION = process.env.NODE_ENV === 'production';
-const TRAKT_CLIENT_ID = '490414ec03fe9a33b2d0c16d58261ebbbd9cf0eee23f213fa0e3eb1d6126d05c';
+
+// Performance optimization constants
+const METADATA_BATCH_SIZE = 20; // Increased from default 10
+const POSTER_BATCH_SIZE = 50; // Increased from default 25
+const TRAKT_CONCURRENT_REQUESTS = 8; // Increased concurrency
+const TMDB_CONCURRENT_REQUESTS = 15; // Increased concurrency for better performance
+const MDB_LIST_CONCURRENT_REQUESTS = 5; // New batch setting
+const MANIFEST_GENERATION_CONCURRENCY = 5; // Parallel list processing during manifest generation
+const ENABLE_MANIFEST_CACHE = true; // Cache manifest to avoid repeated processing
+
+// Environment variable configuration with defaults
+const TRAKT_CLIENT_ID = process.env.TRAKT_CLIENT_ID || '490414ec03fe9a33b2d0c16d58261ebbbd9cf0eee23f213fa0e3eb1d6126d05c';
+const TRAKT_REDIRECT_URI = process.env.TRAKT_REDIRECT_URI || 'urn:ietf:wg:oauth:2.0:oob';
+const TMDB_REDIRECT_URI = process.env.TMDB_REDIRECT_URI || '';
+const TMDB_BEARER_TOKEN = process.env.TMDB_BEARER_TOKEN || '';
+const CUSTOM_HTML_BLURB = process.env.CUSTOM_HTML_BLURB || '';
 
 const staticGenres = [
-  "Action", "Adventure", "Animation", "Anime", "Biography", "Comedy", "Crime",
+  "All","Action", "Adventure", "Animation", "Anime", "Biography", "Comedy", "Crime",
   "Documentary", "Drama", "Family", "Fantasy", "History", "Horror",
   "Music", "Musical", "Mystery", "Romance", "Sci-Fi", "Short", "Sport",
   "Thriller", "War", "Western", "Game-Show"
@@ -14,9 +29,16 @@ const staticGenres = [
 const defaultConfig = {
   apiKey: '',
   rpdbApiKey: '',
+  tmdbBearerToken: TMDB_BEARER_TOKEN, // Use env var if set
+  tmdbSessionId: '',
+  tmdbAccountId: '',
+  tmdbUsername: '',
+  metadataSource: 'cinemeta',
+  tmdbLanguage: '',
   traktAccessToken: '',
   traktRefreshToken: '',
   traktExpiresAt: null,
+  traktUsername: '',
   listOrder: [],
   lastUpdated: null,
   listsMetadata: {},
@@ -24,11 +46,15 @@ const defaultConfig = {
   removedLists: [],
   customListNames: {},
   mergedLists: {},
+  customMediaTypeNames: {},
   importedAddons: {},
   sortPreferences: {},
   disableGenreFilter: false,
   enableRandomListFeature: false,
-  randomMDBListUsernames: ['showtime416', 'garycrawfordgc', 'linaspurinis', 'hdlists'], 
+  randomMDBListUsernames: ['showtime416', 'garycrawfordgc', 'linaspurinis', 'hdlists'],
+  searchSources: ['cinemeta'], // Traditional movie/series search sources
+  mergedSearchSources: ['tmdb'], // New merged search sources - enabled by default with TMDB
+  animeSearchEnabled: true, // Enable anime search - enabled by default 
   availableSortOptions: [
     { value: 'default', label: 'Default' },
     { value: 'rank', label: 'Rank' },
@@ -61,8 +87,11 @@ const defaultConfig = {
     { value: 'released', label: 'Release Date' },
     { value: 'runtime', label: 'Runtime' },
     { value: 'popularity', label: 'Trakt Popularity' },
-    { value: 'votes', label: 'Trakt Votes' },
+    { value: 'random', label: 'Random' },
+    { value: 'percentage', label: 'Percentage Watched' },
     { value: 'my_rating', label: 'My Trakt Rating' },
+    { value: 'watched ', label: 'Watched' },
+    { value: 'collected', label: 'Collected' },
   ]
 };
 
@@ -70,7 +99,19 @@ module.exports = {
   defaultConfig,
   ITEMS_PER_PAGE,
   TRAKT_CLIENT_ID,
+  TRAKT_REDIRECT_URI,
+  TMDB_REDIRECT_URI,
+  TMDB_BEARER_TOKEN,
+  CUSTOM_HTML_BLURB,
   PORT,
   IS_PRODUCTION,
-  staticGenres
+  staticGenres,
+  // Performance constants
+  METADATA_BATCH_SIZE,
+  POSTER_BATCH_SIZE,
+  TRAKT_CONCURRENT_REQUESTS,
+  TMDB_CONCURRENT_REQUESTS,
+  MDB_LIST_CONCURRENT_REQUESTS,
+  MANIFEST_GENERATION_CONCURRENCY,
+  ENABLE_MANIFEST_CACHE
 };
