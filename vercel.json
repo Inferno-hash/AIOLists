@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "builds": [
+    { "src": "api/**/*.js", "use": "@vercel/node" }
+  ],
+  "routes": [
+    { "src": "/manifest.json", "dest": "api/manifest.js" },
+    { "src": "/catalog/(.*)", "dest": "api/catalog.js" },
+    { "src": "/meta/(.*)", "dest": "api/meta.js" },
+    { "src": "/search", "dest": "api/search.js" },
+    { "src": "/tmdb/callback", "dest": "api/tmdb_callback.js" }
+  ]
+}
